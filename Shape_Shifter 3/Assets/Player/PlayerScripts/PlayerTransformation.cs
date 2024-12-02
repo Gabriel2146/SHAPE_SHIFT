@@ -1,4 +1,3 @@
-using EnemyAI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -74,11 +73,9 @@ public class PlayerTransformation : MonoBehaviour
         Collider[] enemies = Physics.OverlapSphere(transform.position, detectionDisableRadius, enemyLayer);
         foreach (Collider enemy in enemies)
         {
-            StateController enemyAI = enemy.GetComponent<StateController>(); // Adaptado al sistema de IA
-            if (enemyAI != null)
-            {
-                enemyAI.IgnorePlayer(true); // Indicar al enemigo que ignore al jugador
-            }
+            // Lógica para desactivar detección (ejemplo: cambiar estado en el script de IA)
+            EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
+            if (enemyAI != null) enemyAI.SetDetection(false);
         }
     }
 
@@ -87,11 +84,9 @@ public class PlayerTransformation : MonoBehaviour
         Collider[] enemies = Physics.OverlapSphere(transform.position, detectionDisableRadius, enemyLayer);
         foreach (Collider enemy in enemies)
         {
-            StateController enemyAI = enemy.GetComponent<StateController>(); // Adaptado al sistema de IA
-            if (enemyAI != null)
-            {
-                enemyAI.IgnorePlayer(false); // Indicar al enemigo que vuelva a detectar al jugador
-            }
+            // Lógica para reactivar detección
+            EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
+            if (enemyAI != null) enemyAI.SetDetection(true);
         }
     }
 
